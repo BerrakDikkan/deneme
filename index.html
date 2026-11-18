@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1677ff">
+  <title>Su Takibi</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="container">
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Günlük sağlık hedefi</p>
+        <h1>Su Takibi</h1>
+      </div>
+      <button class="icon-button" id="resetDayButton" type="button" title="Bugünün kaydını sıfırla" aria-label="Bugünün kaydını sıfırla">
+        <span aria-hidden="true">↻</span>
+      </button>
+    </header>
+
+    <section class="card profile-card" aria-labelledby="profileTitle">
+      <div class="section-heading">
+        <h2 id="profileTitle">Ölçülerim</h2>
+        <span class="badge" id="bmiBadge">VKİ bekleniyor</span>
+      </div>
+
+      <form id="profileForm" novalidate>
+        <div class="form-grid">
+          <label>
+            Boy
+            <span class="input-wrap">
+              <input id="heightInput" name="height" type="number" min="100" max="250" step="0.1" inputmode="decimal" placeholder="175" required>
+              <span>cm</span>
+            </span>
+          </label>
+          <label>
+            Kilo
+            <span class="input-wrap">
+              <input id="weightInput" name="weight" type="number" min="25" max="300" step="0.1" inputmode="decimal" placeholder="70" required>
+              <span>kg</span>
+            </span>
+          </label>
+        </div>
+        <div class="form-grid detail-grid">
+          <label>
+            Yaş
+            <span class="input-wrap">
+              <input id="ageInput" name="age" type="number" min="10" max="100" step="1" inputmode="numeric" placeholder="30" required>
+              <span>yaş</span>
+            </span>
+          </label>
+          <label for="genderInput">
+            Cinsiyet
+            <span class="select-wrap">
+              <select id="genderInput" name="gender" required>
+                <option value="">Seçiniz</option>
+                <option value="female">Kadın</option>
+                <option value="male">Erkek</option>
+              </select>
+            </span>
+          </label>
+        </div>
+        <p class="form-error" id="profileError" role="alert"></p>
+        <button class="primary-button" type="submit">Hesapla</button>
+      </form>
+    </section>
+
+    <section class="card avatar-card" aria-labelledby="avatarTitle">
+      <div class="avatar-art">
+        <svg id="avatar" class="avatar" viewBox="0 0 220 340" role="img" aria-label="Sevimli profil avatarı">
+          <title>Sevimli profil avatarı</title>
+          <circle class="avatar-sparkle sparkle-one" cx="32" cy="82" r="5"></circle>
+          <circle class="avatar-sparkle sparkle-two" cx="184" cy="110" r="4"></circle>
+          <path class="avatar-heart" d="M183 55c-7-8-19 2 0 16 19-14 7-24 0-16z"></path>
+          <ellipse class="avatar-shadow" cx="110" cy="316" rx="66" ry="12"></ellipse>
+          <g class="avatar-teen-accessory">
+            <path class="avatar-backpack" d="M142 130q20-10 30 5l4 44q-12 12-29 3l-5-38z"></path>
+            <path class="avatar-backpack-pocket" d="m151 161 20-2 2 14q-10 7-20 1z"></path>
+            <path class="avatar-backpack-strap" d="M145 135q-10 14-7 32M149 138q-7 19-4 34"></path>
+            <path class="avatar-star" d="m163 142 2 5 5 1-4 3 1 5-4-3-4 3 1-5-4-3 5-1z"></path>
+          </g>
+          <g id="avatarBody" class="avatar-body">
+            <path class="avatar-limb" d="M88 251 78 296"></path>
+            <path class="avatar-limb" d="m132 251 10 45"></path>
+            <path class="avatar-shoe" d="M67 297q12-8 22 0l5 8q-1 6-29 5-7-2 2-13z"></path>
+            <path class="avatar-shoe" d="M132 297q12-8 22 0l8 13q-2 4-29 0-7-2-1-13z"></path>
+            <path class="avatar-arm" d="M76 137q-18 17-17 43l7 35"></path>
+            <path class="avatar-arm" d="M144 137q18 17 17 43l-7 35"></path>
+            <circle class="avatar-hand" cx="66" cy="218" r="9"></circle>
+            <circle class="avatar-hand" cx="154" cy="218" r="9"></circle>
+            <path class="avatar-dress" d="M82 112q28-16 56 0l14 22-13 13 9 79q-38 23-76 0l9-79-13-13z"></path>
+            <path class="avatar-dress-neckline" d="m96 107 14 15 14-15"></path>
+            <path class="avatar-dress-belt" d="M76 209q34 9 68 0"></path>
+            <path class="avatar-dress-bow" d="m110 205-8 7 8 5 8-5z"></path>
+            <path class="avatar-shirt" d="M82 112q28-16 56 0l14 22-13 13 4 82q-33 20-66 0l4-82-13-13z"></path>
+            <path class="avatar-collar" d="m96 107 14 17 14-17-5-7h-18z"></path>
+            <path class="avatar-pocket" d="M122 159h13v17q-7-5-13 0z"></path>
+            <path class="avatar-neck" d="M99 84h22v28q-11 13-22 0z"></path>
+          </g>
+          <path class="avatar-long-hair" d="M78 35C65 44 73 70 66 91c-7 22 3 46-6 76-4 16 5 30 12 34 5-15 13-32 13-53l6-70z"></path>
+          <path class="avatar-long-hair" d="M142 35c13 9 5 35 12 56 7 22-3 46 6 76 4 16-5 30-12 34-5-15-13-32-13-53l-6-70z"></path>
+          <path class="avatar-adult-necklace" d="M99 104q11 17 22 0"></path>
+          <circle class="avatar-adult-pendant" cx="110" cy="119" r="4"></circle>
+          <path class="avatar-senior-scarf" d="M96 105q14 10 28 0l-3 20h-21z"></path>
+          <path class="avatar-senior-scarf-fold" d="m110 117 2 20 8-7"></path>
+          <circle class="avatar-senior-brooch" cx="123" cy="117" r="3"></circle>
+          <path class="avatar-ear" d="M75 58q-16-5-12 14 3 12 15 9M145 58q16-5 12 14-3 12-15 9"></path>
+          <ellipse class="avatar-face" cx="110" cy="58" rx="37" ry="43"></ellipse>
+          <path class="avatar-hair" d="M74 59q-4-43 36-45 42 1 38 46-9-8-13-27-19 15-51 13-3 8-10 13z"></path>
+          <path class="avatar-hair-detail" d="M82 34q15-18 38-13"></path>
+          <path class="avatar-female-bangs" d="M74 55q-4-40 36-41 41 0 38 42-10-8-14-26-18 14-49 14-3 7-11 11z"></path>
+          <path class="avatar-female-clip" d="M136 30q-5-8 0-12 4 7 8 0 5 6-1 12 5 5-2 8-4-5-7 0-6-4 2-8z"></path>
+          <circle class="avatar-earring" cx="72" cy="83" r="3.5"></circle>
+          <circle class="avatar-earring" cx="148" cy="83" r="3.5"></circle>
+          <g class="avatar-senior-glasses">
+            <circle class="avatar-glasses-frame" cx="97" cy="63" r="11"></circle>
+            <circle class="avatar-glasses-frame" cx="123" cy="63" r="11"></circle>
+            <path class="avatar-glasses-bridge" d="M108 62q2-3 4 0M86 61l-7-2M134 61l7-2"></path>
+          </g>
+          <path class="avatar-female-lashes" d="m92 61-3-3m5 1-1-4m33 6 3-3m-5 1 1-4"></path>
+          <ellipse class="avatar-eye" cx="97" cy="63" rx="3.3" ry="4.3"></ellipse>
+          <ellipse class="avatar-eye" cx="123" cy="63" rx="3.3" ry="4.3"></ellipse>
+          <circle class="avatar-cheek" cx="88" cy="76" r="6"></circle>
+          <circle class="avatar-cheek" cx="132" cy="76" r="6"></circle>
+          <path class="avatar-smile" d="M103 78q7 8 14 0"></path>
+          <path class="avatar-brow" d="M91 54q6-5 12 0M117 54q6-5 12 0"></path>
+        </svg>
+      </div>
+      <div class="avatar-details">
+        <p class="eyebrow">Senin profilin</p>
+        <h2 id="avatarTitle">Sevimli avatarın seni bekliyor!</h2>
+        <p id="avatarSummary">Boy ve kilo bilgilerini girince sana özel avatarın burada belirecek.</p>
+        <div class="avatar-tags">
+          <span class="avatar-tag" id="avatarAge">Yaş: —</span>
+          <span class="avatar-tag" id="avatarGender">Cinsiyet: —</span>
+          <span class="avatar-tag" id="avatarBmi">VKİ: —</span>
+        </div>
+        <p class="avatar-note">Avatar eğlence amaçlıdır; vücut şekli boy-kilo oranından yaklaşık olarak uyarlanır.</p>
+      </div>
+    </section>
+
+    <section class="card progress-card" aria-labelledby="todayTitle">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">Bugün</p>
+          <h2 id="todayTitle">Su hedefin</h2>
+        </div>
+        <p class="target-text"><strong id="targetAmount">—</strong><span id="targetUnit"> ml hedef</span></p>
+      </div>
+
+      <div class="progress-ring" id="progressRing" style="--progress: 0deg">
+        <div class="progress-inner">
+          <strong id="drankAmount">0</strong>
+          <span>ml içildi</span>
+        </div>
+      </div>
+
+      <div class="progress-track" aria-label="Günlük su ilerleme durumu">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <p class="progress-summary" id="progressSummary">Ölçülerini girerek günlük hedefini hesapla.</p>
+
+      <div class="quick-actions" aria-label="Hızlı su ekleme">
+        <button type="button" data-add="250"><span>+</span> 250 ml</button>
+        <button type="button" data-add="500"><span>+</span> 500 ml</button>
+        <button type="button" data-add="750"><span>+</span> 750 ml</button>
+      </div>
+
+      <form class="custom-add" id="addWaterForm" novalidate>
+        <label for="customAmount">Özel miktar</label>
+        <div>
+          <input id="customAmount" type="number" min="1" max="5000" step="1" inputmode="numeric" placeholder="ml">
+          <button type="submit">Ekle</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card stats-card" aria-label="Günlük sağlık bilgileri">
+      <div class="stat">
+        <span>Boy</span>
+        <strong id="heightResult">—</strong>
+      </div>
+      <div class="stat">
+        <span>Kilo</span>
+        <strong id="weightResult">—</strong>
+      </div>
+      <div class="stat">
+        <span>VKİ</span>
+        <strong id="bmiResult">—</strong>
+      </div>
+      <div class="stat">
+        <span>Yaş</span>
+        <strong id="ageResult">—</strong>
+      </div>
+      <div class="stat">
+        <span>Cinsiyet</span>
+        <strong id="genderResult">—</strong>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
